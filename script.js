@@ -1,12 +1,6 @@
-let symbols = [
-    [25, 'Circle'],
-    [20, 'Drop'], 
-    [20, 'Eye'],
-    [15, 'Triangle'],
-    [15, 'Square'],
-    [5, 'Pentagram']];
-//0-5
-
+let values = require('./values.js');
+let symbols = values.symbols;
+let prizeArr = values.prizeArr;
 
 //function to create new array below
 function createReel(symbols){
@@ -105,44 +99,39 @@ function checkWin(winSymbols){
     return winArr;
 }
 
-let betMoney = 10000000;
+let betMoney = 10000;
+
 //function to calculate the total win
 function calcTotalWin(winArr){
     let totalWin = 0;
-    let prizeArr = [
-        13, 33, 33, 105, 105, 8533
-    ];
     //let winArr = checkWin(symbols)
     if (winArr.length > 0){
-        //console.log(winArr);
         for (let i = 0; i < winArr.length; i++){
-            //for (let j = 0; j < 3; j++){
-                //if (winArr[i] === symbols[j][1]){
-                    switch(winArr[i]){
-                        case 'Circle' : totalWin += prizeArr[0];
-                        break;
-                        case 'Drop' : totalWin += prizeArr[1];
-                        break;
-                        case 'Eye' : totalWin += prizeArr[2];
-                        break;
-                        case 'Triangle' : totalWin += prizeArr[3];
-                        break;
-                        case 'Square' : totalWin += prizeArr[4];
-                        break;
-                        case 'Pentagram' : totalWin += prizeArr[5];
-                        break;
-                    }
-                //}
-            //}
+            switch(winArr[i]){
+                case 'Circle' : totalWin += prizeArr[0];
+                break;
+                case 'Drop' : totalWin += prizeArr[1];
+                break;
+                case 'Eye' : totalWin += prizeArr[2];
+                break;
+                case 'Triangle' : totalWin += prizeArr[3];
+                break;
+                case 'Square' : totalWin += prizeArr[4];
+                break;
+                case 'Pentagram' : totalWin += prizeArr[5];
+                break;
+            }
         }
     }
     return totalWin;
 }
 
+let totalPlays = 10000;
 let winSymbols = [];
 let theWin = 0;
 let plays = 0;
-while(plays < 10000000){
+
+while(plays < totalPlays){
     plays += 1;
     betMoney -= 1;
     winSymbols = getWinSymbolReel(symbols);

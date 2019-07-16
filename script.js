@@ -55,6 +55,8 @@ function reelStopMessage(stopArr, win){
     console.log(message);
     if (win > 0){
         console.log(`You have won ${win} currency!`);
+    } else {
+        console.log(`No win!`);
     }
 }
 
@@ -99,7 +101,8 @@ function checkWin(winSymbols){
     return winArr;
 }
 
-let betMoney = 10000;
+/*betMoney is for functionality testing
+let betMoney = 10000;*/
 
 //function to calculate the total win
 function calcTotalWin(winArr){
@@ -125,25 +128,30 @@ function calcTotalWin(winArr){
     }
     return totalWin;
 }
-
-let totalPlays = 10000;
+/*totalPlays is for functionality testing
+let totalPlays = 10000;*/
 let winSymbols = [];
 let theWin = 0;
 let plays = 0;
 
-while(plays < totalPlays){
-    plays += 1;
-    betMoney -= 1;
+    //Commented below is for testing----
+//while(plays < totalPlays){
+    //plays += 1;
+    //betMoney -= 1;
+let initCaller = () => {
     winSymbols = getWinSymbolReel(symbols);
     if (checkWin(winSymbols).length > 0){
         let winArr = checkWin(winSymbols);
         theWin += calcTotalWin(winArr);
-        betMoney += theWin;
+    //    betMoney += theWin;
     }
-    //reelStopMessage(winSymbols, theWin);
-    theWin = 0;
+    reelStopMessage(winSymbols, theWin);
 }
-console.log(betMoney + 'money you have left!');
+    //theWin = 0;
+//}
+initCaller();
+//console.log(betMoney + 'money you have left!');
+    //Commented above is for testing----
 
 
 //function to tie it all together

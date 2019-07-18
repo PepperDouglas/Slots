@@ -18,3 +18,13 @@
     min-height: 124px;
 }
 
+.btnContainer {
+    width: 120px;
+    height: 50px;
+    margin: auto
+}
+
+button {
+    text-align: center;
+}
+

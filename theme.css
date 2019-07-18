@@ -2,3 +2,19 @@
     min-width: 300px;
     max-width: 600px;
 }
+
+.layerDiv {
+    background-color: bisque;
+    min-width: 300px;
+    min-height: 150px;
+    margin-bottom: 8px;
+}
+
+.slotBoxes {
+    float: left;
+    min-width: 21%;
+    background-color: cornsilk;
+    margin: 2%;
+    min-height: 124px;
+}
+

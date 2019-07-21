@@ -21,7 +21,8 @@
 .btnContainer {
     width: 120px;
     height: 50px;
-    margin: auto
+    margin: auto;
+    text-align: center;
 }
 
 button {

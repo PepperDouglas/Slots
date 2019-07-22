@@ -102,8 +102,8 @@ function checkWin(winSymbols){
     return winArr;
 }
 
-/*betMoney is for functionality testing
-let betMoney = 10000;*/
+
+let betMoney = 1000;
 
 //function to calculate the total win
 function calcTotalWin(winArr){
@@ -134,31 +134,47 @@ let totalPlays = 10000;*/
 let winSymbols = [];
 let theWin = 0;
 let plays = 0;
+let betPower = 1;
+document.getElementById('cashAmount').innerText = betMoney;
 
     //Commented below is for testing----
 //while(plays < totalPlays){
     //plays += 1;
     //betMoney -= 1;
 let initCaller = () => {
+    betMoney -= betPower;
+    for (let i = 0; i < 12; i++){
+        let reelPos = document.getElementById(i);
+        reelPos.innerHTML = '';
+    }
     winSymbols = getWinSymbolReel(symbols);
     if (checkWin(winSymbols).length > 0){
         let winArr = checkWin(winSymbols);
         theWin += calcTotalWin(winArr);
-    //    betMoney += theWin;
+        betMoney += theWin;
+        //    betMoney += theWin;
     }
+    document.getElementById('cashAmount').innerText = betMoney;
     reelStopMessage(winSymbols, theWin);
+    //function for displaying the symbols below
+    selectAndAssign(winSymbols);
+    theWin = 0;
 }
-    //theWin = 0;
 //}
-//let spinButton = document.getElementById('spinButton');
-//spinButton.addEventListener('click', initCaller);
-initCaller();
+let spinButton = document.getElementById('spinButton');
+spinButton.addEventListener('click', initCaller);
+
 //console.log(betMoney + 'money you have left!');
     //Commented above is for testing----
 
 
 //function to tie it all together
-
+function selectAndAssign(winSymbols){
+    for (let i = 0; i < 12; i++){
+        let reelPos = document.getElementById(i);
+        reelPos.insertAdjacentHTML('afterbegin', `<img src="../img/${winSymbols[i]}.png" width="82" height="86" title="image" alt="symbol"></img>`);
+    }
+}
 
 
 //exports

@@ -1,7 +1,15 @@
 let values = require('../values.js');
+let soundsArray = require('../soundControl.js');
+let snd = soundsArray.soundsArr;
 let symbols = values.symbols;
 let prizeArr = values.prizeArr;
-//import { symbols, prizeArr } from './values.js';
+
+//sound stuff
+snd[3].loop = true;
+snd[3].volume = 0.3;
+snd[3].play();
+
+
 
 //function to create new array below
 function createReel(symbols){
@@ -106,23 +114,35 @@ function checkWin(winSymbols){
 let betMoney = 1000;
 
 //function to calculate the total win
-function calcTotalWin(winArr){
+function calcTotalWin(winArr, ...snd){
     let totalWin = 0;
     //let winArr = checkWin(symbols)
     if (winArr.length > 0){
         for (let i = 0; i < winArr.length; i++){
             switch(winArr[i]){
                 case 'Circle' : totalWin += prizeArr[0];
+                snd[0].volume = 1;
+                snd[0].play();
                 break;
                 case 'Drop' : totalWin += prizeArr[1];
+                snd[1].volume = 1;
+                snd[1].play();
                 break;
                 case 'Eye' : totalWin += prizeArr[2];
+                snd[2].volume = 1;
+                snd[2].play();
                 break;
                 case 'Triangle' : totalWin += prizeArr[3];
+                snd[6].volume = 1;
+                snd[6].play();
                 break;
                 case 'Square' : totalWin += prizeArr[4];
+                snd[5].volume = 1;
+                snd[5].play();
                 break;
                 case 'Pentagram' : totalWin += prizeArr[5];
+                snd[4].volume = 1;
+                snd[4].play();
                 break;
             }
         }
@@ -150,7 +170,7 @@ let initCaller = () => {
     winSymbols = getWinSymbolReel(symbols);
     if (checkWin(winSymbols).length > 0){
         let winArr = checkWin(winSymbols);
-        theWin += calcTotalWin(winArr);
+        theWin += calcTotalWin(winArr, ...snd);
         betMoney += theWin;
         //    betMoney += theWin;
     }

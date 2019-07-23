@@ -172,7 +172,9 @@ spinButton.addEventListener('click', initCaller);
 function selectAndAssign(winSymbols){
     for (let i = 0; i < 12; i++){
         let reelPos = document.getElementById(i);
-        reelPos.insertAdjacentHTML('afterbegin', `<img src="../img/${winSymbols[i]}.png" width="82" height="86" title="image" alt="symbol"></img>`);
+        setTimeout(function(){
+        reelPos.insertAdjacentHTML('afterbegin', `<img src="../img/${winSymbols[i]}.png" width="90" height="120" title="image" alt="symbol"></img>`);
+        }, 50*i);
     }
 }
 

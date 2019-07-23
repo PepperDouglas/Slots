@@ -1,15 +1,22 @@
 let values = require('../values.js');
 let soundsArray = require('../soundControl.js');
+let buttontnControl = require('../buttonControl.js');
+let btnControl = buttontnControl.btnInit;
 let snd = soundsArray.soundsArr;
 let symbols = values.symbols;
 let prizeArr = values.prizeArr;
 
-//sound stuff
+let betMoney = 1000;
+let winSymbols = [];
+let theWin = 0;
+let plays = 0;
+let betPower = 1;
+document.getElementById('cashAmount').innerText = betMoney;
+
+//sound background start
 snd[3].loop = true;
 snd[3].volume = 0.3;
 snd[3].play();
-
-
 
 //function to create new array below
 function createReel(symbols){
@@ -111,7 +118,6 @@ function checkWin(winSymbols){
 }
 
 
-let betMoney = 1000;
 
 //function to calculate the total win
 function calcTotalWin(winArr, ...snd){
@@ -149,19 +155,14 @@ function calcTotalWin(winArr, ...snd){
     }
     return totalWin;
 }
-/*totalPlays is for functionality testing
-let totalPlays = 10000;*/
-let winSymbols = [];
-let theWin = 0;
-let plays = 0;
-let betPower = 1;
-document.getElementById('cashAmount').innerText = betMoney;
 
-    //Commented below is for testing----
-//while(plays < totalPlays){
-    //plays += 1;
-    //betMoney -= 1;
+btnControl(betPower);
+
 let initCaller = () => {
+    let reg = /\d+/;
+    let amountTxt = document.getElementById('betLevelText').innerText;
+    let betPower = amountTxt.match(reg);
+    console.log(betPower);
     betMoney -= betPower;
     for (let i = 0; i < 12; i++){
         let reelPos = document.getElementById(i);
@@ -171,8 +172,7 @@ let initCaller = () => {
     if (checkWin(winSymbols).length > 0){
         let winArr = checkWin(winSymbols);
         theWin += calcTotalWin(winArr, ...snd);
-        betMoney += theWin;
-        //    betMoney += theWin;
+        betMoney += theWin * betPower;
     }
     document.getElementById('cashAmount').innerText = betMoney;
     reelStopMessage(winSymbols, theWin);

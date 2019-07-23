@@ -1,6 +1,16 @@
+html {
+    min-width: 870px;
+    max-width: 1110px;
+}
+
+body{
+    text-align: -webkit-center;
+}
+
 .mainDiv{
     min-width: 300px;
     max-width: 600px;
+    margin-bottom: 45px;
 }
 
 .layerDiv {
@@ -29,4 +39,24 @@
 button {
     text-align: center;
 }
+
+.payTable {
+    width: 900px;
+    margin: auto;
+}
+
+.payLine {
+    width: 250px;
+    margin-right: 20px;
+    margin-bottom: 4px;
+    float: left;
+    margin-left: 10px;
+}
+
+.p-description {
+    float: right;
+    text-align: left;
+    width: 70%;
+}
+
 

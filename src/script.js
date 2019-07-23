@@ -159,10 +159,10 @@ function calcTotalWin(winArr, ...snd){
 btnControl(betPower);
 
 let initCaller = () => {
+    document.getElementById('spinButton').style.visibility = "hidden";
     let reg = /\d+/;
     let amountTxt = document.getElementById('betLevelText').innerText;
     let betPower = amountTxt.match(reg);
-    console.log(betPower);
     betMoney -= betPower;
     for (let i = 0; i < 12; i++){
         let reelPos = document.getElementById(i);
@@ -179,14 +179,13 @@ let initCaller = () => {
     //function for displaying the symbols below
     selectAndAssign(winSymbols);
     theWin = 0;
+    setTimeout(() => {
+        document.getElementById('spinButton').style.visibility = "visible";
+    }, 750);
 }
 //}
 let spinButton = document.getElementById('spinButton');
 spinButton.addEventListener('click', initCaller);
-
-//console.log(betMoney + 'money you have left!');
-    //Commented above is for testing----
-
 
 //function to tie it all together
 function selectAndAssign(winSymbols){
@@ -194,7 +193,7 @@ function selectAndAssign(winSymbols){
         let reelPos = document.getElementById(i);
         setTimeout(function(){
         reelPos.insertAdjacentHTML('afterbegin', `<img src="../img/${winSymbols[i]}.png" width="90" height="120" title="image" alt="symbol"></img>`);
-        }, 50*i);
+        }, 50 * i + 50);
     }
 }
 

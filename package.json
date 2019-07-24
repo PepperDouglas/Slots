@@ -4,10 +4,12 @@
   "description": "asynch and tests",
   "main": "script.js",
   "dependencies": {
-    "node-fetch": "^2.5.0"
+    "node-fetch": "^2.5.0",
+    "webpack": "^4.36.1"
   },
   "devDependencies": {
-    "mocha": "^6.1.4"
+    "mocha": "^6.1.4",
+    "webpack-cli": "^3.3.6"
   },
   "scripts": {
     "test": "mocha",

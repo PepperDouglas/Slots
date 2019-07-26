@@ -14,9 +14,16 @@ let betPower = 1;
 document.getElementById('cashAmount').innerText = betMoney;
 
 //sound background start
-snd[3].loop = true;
-snd[3].volume = 0.3;
-snd[3].play();
+function musicStart(){
+    snd[3].loop = true;
+    snd[3].volume = 0.3;
+    snd[3].play();
+
+}
+window.addEventListener('click', () => {
+    musicStart();
+    window.removeEventListener('click', musicStart);
+});
 
 //function to create new array below
 function createReel(symbols){

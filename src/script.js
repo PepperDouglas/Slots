@@ -1,6 +1,7 @@
 let values = require('../values.js');
 let soundsArray = require('../soundControl.js');
 let buttontnControl = require('../buttonControl.js');
+let { winCount } = require('../winCountUp.js');
 let btnControl = buttontnControl.btnInit;
 let snd = soundsArray.soundsArr;
 let symbols = values.symbols;
@@ -158,11 +159,23 @@ function calcTotalWin(winArr, ...snd){
 
 btnControl(betPower);
 
+let enoughCash = (betMoney, betPower) => {
+    return betMoney === 0 ? 'Insert more money!' :
+        betMoney < betPower ? 'Lower your bet!' : false;
+}
+
 let initCaller = () => {
+    document.getElementsByClassName('winCountUp')[0].innerText = '';
     document.getElementById('spinButton').style.visibility = "hidden";
     let reg = /\d+/;
     let amountTxt = document.getElementById('betLevelText').innerText;
     let betPower = amountTxt.match(reg);
+    betPower = parseInt(betPower[0]);
+    if (enoughCash(betMoney, betPower)){
+        alert(enoughCash(betMoney, betPower));
+        document.getElementById('spinButton').style.visibility = "visible";
+        return;
+    }
     betMoney -= betPower;
     for (let i = 0; i < 12; i++){
         let reelPos = document.getElementById(i);
@@ -178,10 +191,15 @@ let initCaller = () => {
     reelStopMessage(winSymbols, theWin);
     //function for displaying the symbols below
     selectAndAssign(winSymbols);
+    //checking what timeout for button showing below
+    (function wouldDisplay(){
+        let finalWin = theWin * betPower;
+        finalWin > 0 ? winCount(finalWin) : 
+        setTimeout(() => {
+            document.getElementById('spinButton').style.visibility = "visible";
+        }, 750);
+    })();
     theWin = 0;
-    setTimeout(() => {
-        document.getElementById('spinButton').style.visibility = "visible";
-    }, 750);
 }
 //}
 let spinButton = document.getElementById('spinButton');

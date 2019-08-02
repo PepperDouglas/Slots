@@ -84,4 +84,9 @@ button {
     width: 140px;
 }
 
-
+.winCountUp {
+    position: absolute;
+    width: 62%;
+    font-size: -webkit-xxx-large;
+    color: rgb(255, 23, 112);
+}

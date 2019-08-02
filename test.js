@@ -1,5 +1,5 @@
 var assert = require('assert');
-let fn = require('./script.js');
+let fn = require('./src/script.js');
 let symbols = [
   [25, 'Circle'],
   [20, 'Drop'], 

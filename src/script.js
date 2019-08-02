@@ -158,11 +158,22 @@ function calcTotalWin(winArr, ...snd){
 
 btnControl(betPower);
 
+let enoughCash = (betMoney, betPower) => {
+    return betMoney === 0 ? 'Insert more money!' :
+        betMoney < betPower ? 'Lower your bet!' : false;
+}
+
 let initCaller = () => {
+    //check for money vs betlevel
     document.getElementById('spinButton').style.visibility = "hidden";
     let reg = /\d+/;
     let amountTxt = document.getElementById('betLevelText').innerText;
     let betPower = amountTxt.match(reg);
+    if (enoughCash(betMoney, betPower)){
+        alert(enoughCash(betMoney, betPower));
+        document.getElementById('spinButton').style.visibility = "visible";
+        return;
+    }
     betMoney -= betPower;
     for (let i = 0; i < 12; i++){
         let reelPos = document.getElementById(i);

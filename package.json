@@ -5,11 +5,11 @@
   "main": "script.js",
   "dependencies": {
     "node-fetch": "^2.5.0",
-    "webpack": "^4.36.1"
+    "webpack": "^5.75.0"
   },
   "devDependencies": {
     "mocha": "^6.1.4",
-    "webpack-cli": "^3.3.6"
+    "webpack-cli": "^5.0.1"
   },
   "scripts": {
     "test": "mocha",
